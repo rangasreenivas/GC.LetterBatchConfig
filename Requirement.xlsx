@@ -1,0 +1,259 @@
+ReqID	Req Type	Category	Feature	Requirement	Description	Comments	Status	
+1	HLBR	Security & Access	AD Based Authentication	System shall provide secure authentication using organization's existing user accounts.				
+1.1	DLBR	Security & Access	AD Based Authentication	System shall authenticate users using their existing enterprise account credentials though Active Directory based authentication.	The application shall not maintain separate username and passwords. User access shall be managed through the organizations existing IT identitiy and access management process.		Proposed	
+2	HLBR	Intake	Request Creation	System shall provide a centralized process to submit and create claims reprocessing projects.	Requester completes the form and attaches the claims file and supporting documents. A project is created in New status after successful submission.		Proposed	
+2.1	DLBR	Intake	Intake Portal *	System shall provide a standardized claims reprocessing request form.	"Requester enters the required project details.
+
+	• Due Date
+	• Summary
+	• System (QNXT / CSC)
+	• Line of Business (Medicare, Medicaid (DMAS), etc.)
+	• Reprocessing Type (Underpayment, Overpayment)
+	• Reason/Incident Type
+	• Priority (Low, Medium, High) 
+	• Timely Filing Indicator
+	• Projected Financial Impact
+	• Interest Applicable (Yes/No)
+• Type of Service
+• Provider Name
+• Claim Count
+• Add Notes
+
+For DMAS LOB, 
+We need to address the additional fields:
+• Date DMAS Notified
+• Hold Length
+• Return to Analyst
+• Ackowleged Date"		Proposed	
+2.2	DLBR	Intake	Claim File Upload	System shall allow the requester to attach the claims file.	"Claims file is associated with the request ticket.
+Claims File to follow a standard format for Claims List.
+Supported file type: .xlsx, .xls
+"	".csv can be accomodated.
+
+"	Proposed	
+2.3	DLBR	Intake	Supporting Documents	System shall allow supporting documents to be attached.	"Attachments remain associated with the request ticket.
+Expected attachments:
+	• Regulatory Documentation
+	• Overpayment Letters
+	• Email attachments
+	• Images
+	• PDF for additional information/ Supporting Documentation
+	• Related Tickets/Project tickets"		Proposed	
+2.4	DLBR	Intake	Submission Validation	System shall validate required form fields and attachments before submission.	Incomplete requests shall not be submitted.		Proposed	
+2.5	DLBR	Intake	Project Creation	System shall create a project in New status after successful submission.	"The project shall retain the submitted form data and attachments.
+Workflow Status for new request: New"		Proposed	
+3	HLBR	Intake	Project Dashboard	System shall provide a dashboard to view and manage created claims reprocessing projects.	Dashboard shall provide visibility of projects and their current workflow status.		Proposed	
+3.1	DLBR	Intake	Project Dashboard *	System shall display created projects on the Project dashboard.	Dashboard shall support visibility of project details, status, requester information and ownership.		Proposed	
+4	HLBR	Triage	Triage Decision	System shall support triage review of projects in New status.	Triage users can review submitted request forms, download attached claim files and supporting documentation, and manage project intake activities. This includes assigning projects to a queue, assigning projects to an analyst, requesting additional information from the requester, or closing the project as appropriate.Triage users can assign the project to a queue, assign to an analyst, request additional information, or close the project.		Proposed	
+4.1	DLBR	Triage	Review Incidents	System shall allow triage users to review all projects created in the Project Dashboard.	"Triage users can navigate to the Project dashboard and view all projects list.
+Triage user can select a project for review."		Proposed	
+4.2	DLBR	Triage	Project Summary *	System shall allow triage users to view request details for a specific project.	"Includes:
+• Intake information
+• Project details
+• Attachments."		Proposed	
+4.3	DLBR	Triage	Document Access	System shall allow triage users to download attached claim files and supporting documents.	Downloads shall be associated with the project.		Proposed	
+4.4	DLBR	Triage	Queue & Analyst Assignment	System shall allow authorized triage users to assign or reassign a reviewed project to a queue and analyst.	"Triage person will assign the project to a specific pre-defined queue and an available analyst in that same queue.
+
+Workflow Status: New -> Assigned to Queue -> In-Progress"		Proposed	
+4.5	DLBR	Triage	Additional Information	System shall allow a triage user to request additional information from the requester.	Request and response shall be documented under the project notes, form or the attachment.		Proposed	
+4.6	DLBR	Triage	Close Request	System shall allow a triage user to close a request ticket that cannot proceed.	Closure reason shall be recorded under notes.		Proposed	
+4.7	DLBR	Triage	Notes & Collaboration	System shall provide a notes section under each project ticket.	Users can document review notes and request additional details from the requester.		Proposed	
+5	HLBR	Analysis	Analyst Work Queue 	System shall provide analysts with access to view and manage projects based on queue level permissions.	Assigned projects shall be available in the analyst work queue.		Proposed	
+5.1	DLBR	Analysis	Analyst Queue Selection and Filtering	System shall provide analysts with the ability to select and filter projects by queue.	"Analysts can access their assigned work from the queue.
+
+Analysts shall be able to switch between available queues and filter the project list based on the selected queue."		Proposed	
+5.2	DLBR	Analysis	Queue Visibility and Edit Access	System shall provide analysts read access to all queues and enforce queue-based edit permissions.	Analysts can view all queues; edit permissions are limited to assigned queues.		Proposed	
+5.3	DLBR	Analysis	Queue and Analyst Reassignment	System shall allow authorized analysts to reassign projects to a different queue or another analyst.	"Analysts with edit access to the specific project can reassign projects to another queue or analyst.
+
+Analyst can also re-assign the project back to the Unassigned Queue."		Proposed	
+6	HLBR	Analysis	Project Acceptance,  Claim Review & Testing	System shall allow an assigned analyst to accept a project for analysis.	Acceptance moves the project into analyst processing.		Proposed	
+6.1	DLBR	Analysis	View Project Summary *	System shall allow analysts to view and review project details and attachments.	"Includes:
+• Intake information
+• Project details
+• Attachments.
+• Information or Notes from Requester and Triage person."		Proposed	
+6.2	DLBR	Analysis	Accept Request	System shall provide an Accept action for the assigned analyst.	"Acceptance starts analyst processing.
+Workflow Status:  New -> Assigned to Queue -> In-Progress"		Proposed	
+6.3	DLBR	Analysis	Initial Excel File (QNXT)	"System shall provide an initial downloadable version of the Excel file with:
+• Claims Pull 
+• Eligible Claims 
+• Excluded Claims 
+
+For QNXT, the data is pulled using SQL queries from QNXT DB."	"The analyst can download the Excel workbook generated by the application and use it for further analysis. All test results must be recorded in the same workbook, and the Eligible and Excluded worksheets should be updated as required.
+
+
+Claims are not eligible if:
+
+File/Input Validation: (Can be automated)
+• Duplicate Claim
+• Claim belongs to another active project
+• Claims under Review during Contestation (Possible to automate)
+
+QNXT Validation: (Can be automated)
+• Stale Version
+• Locked/Archived Claim
+• If Claim Status is not Paid or Denied. (Exclude Void, Reversed, Pending)
+
+Manual Overides: 
+• Missing Authorization
+• Analyst Exclusion
+"	"The Initial Excel is used only for QNXT processing. 
+
+"	Proposed	
+6.4	DLBR	Analysis	CSC Analysis	CSC data extraction is done via CSC terminal window.	User manaully enters the claims Ids into the CSC termnical and creates a Claims detail list. The result is exported to a file location for further analysis.	External Process	Proposed	
+6.5	DLBR	Analysis	Analyst Notes	System shall allow the analyst to add notes to the project.	Notes document analysis findings and decisions.		Proposed	
+6.6	DLBR	Analysis	Testing TXT file creation for QNXT	System shall allow the analyst to export the list of eligible claims into a TXT file format for loading into the QNXT system.	"TXT File Format
+Each record in the TXT file shall contain the following fields in the specified order:
+
+<Claim Number>    <Reprocessing Reason>    <Reprocessing Reason (Copy)>    <Interest Indicator>    <Clean Claim Date>
+"	"<Interest Indicator>
+ 
+• -1 = Claims that do not require interest calculation
+• -1 = Secondary claims
+• 7 = Original claims that require interest
+• 9 = Adjusted claims (A1) that require interest"	Proposed	
+6.7	DLBR	Analysis	Testing (QNXT)	Actual QNXT testing is performed outside the Workflow Portal, and results are documented in the Analysis Report.	"The analyst performs the following activities:
+	1. Loads the generated (TXT) test file into the QNXT Test Environment.
+	2. Execute claim testing outside the Workflow Portal.
+3. Retrieve and review test results.
+"	External Process	Proposed	
+6.8	DLBR	Analysis	Testing (CSC)	External Manual testing will be done by the analyst in the CSC test environment.	"Manual testing will be done within the CSC terminal window. 
+The test result needs to be exported within 24 hours availability window; otherwise testing must be run again."		Proposed	
+7	HLBR	Analysis	Initial Analysis Report	System shall support creation and storage of the Initial Analysis Report.	Report and supporting documents shall be attached to the project with analyst notes.		Proposed	
+7.1	DLBR	Analysis	Initial Analysis Report	"System shall support creation and attachment of the Initial Analysis Report.
+
+"	"Analyst must update the Initial summary report to the same excel downloaded from the portal. This excel needs to be uploaded to the portal prior to Approval stage.
+
+Report captures analysis findings, testing results, and recommendation after the testing performed by the analyst using the eligibile claims in the test environement.
+
+Details should include: 
+Attachment: 
+ • Initial Analysis Report File
+
+Summary:
+ • Actual Start Date
+	• Oldest Claim Pay Date
+	• Newest Claim Pay Date
+ • Letter Sent Date
+
+Test
+	• Reprocessing Date
+	• Total Claims Reprocessed
+	• Total Paid Before Reprocessing
+	• Total Paid After Reprocessing
+	• Net Reprocessing Impact
+"		Proposed	
+7.2	DLBR	Analysis	View Report Details	System shall provide an Initial Analysis Report details section under the project.	"Test
+	• Reprocessing Date
+	• Total Claims Reprocessed
+	• Total Paid Before Reprocessing
+	• Total Paid After Reprocessing
+	• Net Reprocessing Impact"		Proposed	
+7.3	DLBR	Analysis	Additional report attachments	System shall allow report-related attachments to be stored under the project.	"Includes the Initial Analysis Report and supporting documents.
+
+Attachments include:
+•  Initial Analysis Report
+• Supporting Documentation
+• Overpayment Letter (if applicable)"		Proposed	
+7.4	DLBR	Analysis	Approval Submission	System shall allow the analyst to submit the completed analysis for manager approval.	Project status changes from New -> Assigned to Queue -> In-progress -> Waiting for Approval.		Proposed	
+8	HLBR	Approval	Manager Review & Decision	System shall provide managers with access to the Initial Analysis Report, testing results, notes, and attachments for approval review.	Project enters Waiting for Approval after the analyst submits the analysis for approval.		Proposed	
+8.1	DLBR	Approval	Manager Review	System shall allow the manager to review the Initial Analysis Report, testing results, notes, and attachments.	All approval information shall be accessible from the project.		Proposed	
+8.2	DLBR	Approval	Approve	System shall allow the manager to approve the project.	"Approved projects proceed to the next workflow stage.
+
+Approval will change status to Reprocessing.
+New -> Assigned to Queue -> In-progress -> Waiting for Approval -> Reprocessing"		Proposed	
+8.3	DLBR	Approval	Reject	System shall allow the manager to reject the analysis.	"Rejection reason and required follow-up shall be recorded.
+
+Rejection will change status back to Inprogress:
+ New -> Assigned to Queue -> In-progress -> Waiting for Approval."		Proposed	
+9	HLBR	Reprocessing	Reprocessing Initiation	System shall support moving an approved project to Reprocessing status.	After testing analysis is approved, the project moves to Reprocessing. The user performs production reprocessing activities based on the approved testing analysis.		Proposed	
+9.1	DLBR	Reprocessing	Approved TXT File (QNXT)	System shall allow the user to access the approved TXT file for production processing.	User shall use the same approved TXT file from testing for the QNXT Production load.	Not applicable for CSC.	Proposed	
+9.2	DLBR	Reprocessing	Production Load	"QNXT:
+User shall load the approved TXT file into the QNXT Production environment.
+
+CSC:
+User shall copy the required/approved ClaimsIDs manually to CSC production Terminal window to initiate Reprocessing."	The production load is performed by the user outside the portal.	"External Process
+"	Proposed	
+9.3	DLBR	Reprocessing	Reprocessing Monitoring	"QNXT:
+User shall monitor claim status in QNXT/CSC outside the portal until claims are finalized.
+CSC:
+User shall monitor CSC claim status through the CSC termincal process until claims are finalized."	"The claims are monitored until all the claims are in one of the following statuses:
+• Pay
+• Paid
+• Deny
+• Denied"	"External Process
+"	Proposed	
+9.4	DLBR	Reprocessing	Production Exceptions	System shall allow the user to document production exceptions and claims that cannot be finalized.	User shall update project notes with exception details and the list of claims that cannot be finalized.	Requestor shall be notified of applicable exceptions.	Proposed	
+10	HLBR	Reprocessing	Underpayment	System shall support the Underpayment reprocessing workflow based on the approved testing analysis.	User shall use the same approved TXT file in QNXT Production, monitor claims until finalized, complete post analysis, and close the project.		Proposed	
+10.1	DLBR	Reprocessing	Underpayment Production Processing	User shall load the same approved TXT file used for testing into QNXT Production.	The production TXT file shall be the approved testing TXT file.	External Process	Proposed	
+10.2	DLBR	Reprocessing	Underpayment Finalization	User shall monitor claims in QNXT until claims are finalized.	User confirms required production finalization before post analysis.	"External Process
+"	Proposed	
+11	HLBR	Reprocessing	Overpayment	System shall support the Overpayment reprocessing workflow based on the approved testing analysis.	User shall perform overpayment letter processing, contestation management, dispute resolution, eligible claim reprocessing, post analysis, and closure.	Workflow is selected based on approved testing analysis; system does not independently classify payment impact.	Proposed	
+11.1	DLBR	Reprocessing	Overpayment Letter	System shall allow the user to record the date the overpayment letter was sent to the provider.	Letter is generated and sent outside the portal. The letter sent date must be recorded in Project Summary.	Letter generation/sending remains outside the portal.	Proposed	
+11.2	DLBR	Reprocessing	Contestation Duration	System shall allow the user to select a contestation duration between 35 and 90 days.	Minimum contestation period is 35 days and the selected duration is retained with the project.		Proposed	
+11.3	DLBR	Reprocessing	Contestation Hold Status	System shall display whether the project is on Contestation Hold.	Project remains in the applicable Contestation Hold state for the selected duration.		Proposed	
+11.4	DLBR	Reprocessing	Dispute Resolution	"System shall support documenting and managing disputed claims identified during the contestation period.
+These claims needs to be moved to a separate queue. ""Contested Claims"""	"During the contestation period, eligible disputes are resolved and applicable claims may be reprocessed based on resolution.
+
+The remaining claims will be moved to Contested claims Queue."		Proposed	
+11.5	DLBR	Reprocessing	Eligible Claim Reprocessing	System shall support the user in identifying and reprocessing eligible claims during/after contestation resolution.	Only claims determined by the user to be eligible based on approved analysis and dispute resolution shall proceed.	System does not independently determine overpayment eligibility.	Proposed	
+12	HLBR	Reprocessing	DMAS	System shall support DMAS hold processing for applicable Medicaid Recovery projects.	User can place the project on a 30-day or 60-day DMAS hold when applicable, notify DMAS, and resume the overpayment workflow after the hold.	DMAS hold is a user-driven workflow action.	Proposed	
+12.1	DLBR	Reprocessing	DMAS 30-Day Hold	System shall allow the user to place an applicable project on a 30-day DMAS Hold for claims greater than $100,000.	Project status changes to DMAS Hold and the 30-day hold period is tracked.	Applicable to Medicaid Recovery projects.	Proposed	
+12.2	DLBR	Reprocessing	DMAS 60-Day Hold	System shall allow the user to place an applicable project on a 60-day DMAS Hold when the claim pay date is older than 24 months.	Project status changes to DMAS Hold and the 60-day hold period is tracked.	Applicable to Medicaid Recovery projects.	Proposed	
+12.3	DLBR	Reprocessing	DMAS Notification	System shall notify the DMAS team when a project is placed on a DMAS Hold.	Notification identifies the project and applicable hold information.	Required for both 30-day and 60-day holds.	Proposed	
+12.4	DLBR	Reprocessing	DMAS Work Pickup	System shall track DMAS team work pickup/acknowledgement within 48 hours.	DMAS team is expected to pick up the work within 48 hours of notification.	Applies to both hold types.	Proposed	
+12.5	DLBR	Reprocessing	DMAS Team Actions	System shall provide the DMAS team with options to Acknowledge, Reject, Requeue, or move the project back to a previous workflow status.	Selected action shall update the project workflow accordingly.		Proposed	
+12.6	DLBR	Reprocessing	DMAS Hold Exit	System shall allow the project to exit DMAS Hold after the applicable 30-day or 60-day hold period is completed.	After exiting the hold, project continues through the regular Overpayment workflow.		Proposed	
+13	HLBR	Post Analysis	Post Analysis	System shall support completion and review of post analysis after production reprocessing.	Project moves from Reprocessing to Post Analysis after applicable production processing is complete.		Proposed	
+13.1	DLBR	Post Analysis	Workflow Status	System shall move the project from Reprocessing to Post Analysis when required reprocessing activities are complete.	"Transition occurs after production processing and required finalization/exception handling are complete.
+
+The Workflow Status will be: New -> Assigned to Queue -> In-progress -> Waiting for Approval -> Reprocessing -> Post-analysis"		Proposed	
+13.2	DLBR	Post Analysis	Project Summary Updates	System shall allow the user to update the Analysis tab in Project Summary with required post-analysis information.	"User shall record required post-analysis information after production claims are finalized.
+
+Report captures Production Reprocessing results and recommendation after the reprocessing performed by the analyst using the eligibile claims in the Production environement.
+
+Details should include: 
+Attachment: 
+ • Post Analysis Report File
+
+Summary:
+ • Actual Start Date
+	• Oldest Claim Pay Date
+	• Newest Claim Pay Date
+ • Letter Sent Date
+
+
+Prod
+		• Reprocessing Date
+	• Total Claims Reprocessed
+	• Total Paid Before Reprocessing
+	• Total Paid After Reprocessing
+	• Net Reprocessing Impact"		Proposed	
+13.3	DLBR	Post Analysis	Post Analysis Document	System shall support creation and/or attachment of the Post Analysis document.	Post-analysis document captures final analysis and supporting results.		Proposed	
+13.4	DLBR	Post Analysis	Post Analysis Review	System shall allow an authorized analyst to review the completed post analysis.	Reviewer validates post-analysis information and determines whether project can proceed to Closure.		Proposed	
+14	HLBR	Closure	Project Closure	System shall support controlled project closure after post-analysis review.	Project moves to Pending Close after successful review and then to Closed Confirmed after closure requirements are satisfied.		Proposed	
+14.1	DLBR	Closure	Pending Close	System shall support moving the project to Pending Close after post-analysis approval.	Pending Close indicates post analysis has been reviewed and project is ready for final closure.		Proposed	
+14.2	DLBR	Closure	Closed Confirmed	System shall support moving the project from Pending Close to Closed Confirmed.	Closed Confirmed represents completion of the project workflow.		Proposed	
+15	HLBR	Workflow	Hold	System shall allow a project to be placed on hold at applicable workflow stages.	Hold requires a reason and shall support returning the project from Hold to the applicable workflow stage.		Proposed	
+15.1	DLBR	Workflow	Hold	System shall allow authorized users to place a project on hold at an applicable workflow stage.	Hold reason is required.		Proposed	
+15.2	DLBR	Workflow	Return from Hold	System shall allow an authorized user to return a project from Hold to the applicable workflow stage.	Project shall resume from the defined stage.		Proposed	
+15.3	DLBR	Workflow	Reverse Status Update	System shall allow the user to update the status of the project to a previous stage.			Proposed	
+16	HLBR	User & Queue Management	Manage Users and Queues	The system shall support management of the required users, roles and assignment to queue.			Proposed	
+15.1	DLBR	User & Queue Management	Queue Management	The system shall allow authorized users to manage queues.	"Allow authorized users to create,update, activate, deactivate queues.
+
+"	"Current approved queues:
+• QNXT Overpayment
+• QNXT Underpayment
+• CSC Overpayment
+• CSC Underpayment
+• DMAS Queue
+• Contested Queue
+• Unassigned Queue"	Proposed	
+15.2	DLBR	User & Queue Management	User management	The system shall allow authorized users to manage users and assign required queues and roles.	Allow authorized users to manage application users and assign queues and roles required for their responsibilties.	"Identified Roles:
+• Requester
+• Triage person
+• Analyst
+• Manager/Approver
+• App Admin
+• Auditor
+"	Proposed	
