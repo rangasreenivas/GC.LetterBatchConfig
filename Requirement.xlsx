@@ -257,3 +257,38 @@ Prod
 • App Admin
 • Auditor
 "	Proposed	
+
+Act as a Principal Software Architect and Lead .NET Developer. I need you to scaffold the architecture and core implementation for an enterprise-grade web application using ASP.NET Core MVC and SQL Server. 
+
+Business Requirement: I want to develop aplication like workflow ticketing system (service now/Jira) where business want to re-process certain claims (Claimid, Claim Amount...) in each ticket we call here as projects. where each ticket goes into certain stages (New, InProgress, Waiting for approval, Approved, Reprocessing, Post Analysis,Closed) and each ticket may fall under certain Queues (Over Payment, Under Payment ...) 
+Business scenario: where a requestor creates a record, we call it as projects, Requestor creates  a project with certain fields: Requestor details, Assigned To,Duedate, Reprocessing Type (UnderPayment, OverPayment), Claim Amount, Claim Count, Ticket Notes, Attachments, History. Main import Requestor attach a Excel with claim details , these claim details should be saved in SQL database for reporting puprose and for otther business validation.  
+Once Submitted , Triage user reviews the claims details that are submitted by the requestor and those claims will be processed manually in claims systems then Triage user generates .txt file, this file will be attached to thhis ticket and send for approval. The approver review and can send Approved/Rejected or Mark it as Dispute. Now the Reviewer reviews and can create a sub project if the current Project is not closed. Finally if all goes well the project is marked as closed.
+
+Roles : Requestor, Triager, Analyst, anager, Auditor, System Admin
+Workflow Status : New, InProgress, Waiting for Approval, Aproved, Rejected, Closed
+Attachment types: Claims File, OverPayment Letter,Email Attachment, Initial Analysis Report
+
+The application must strictly follow modern real-time industry standards, production-ready best practices, and enterprise patterns.
+
+### 1. Architectural Requirements
+- Architecture Style: Clean Architecture (Domain-Driven Design principles). Divide the solution into distinct layers: Domain, Application, Infrastructure (Data), and Web (Presentation).
+- Design Patterns: Implement Repository and Unit of Work patterns, Dependency Injection (DI), and the CQRS (Command Query Responsibility Segregation) pattern using MediatR.
+- Security: Enforce HTTPS, protect against CSRF/XSRF using anti-forgery tokens, implement secure password hashing via ASP.NET Core Identity, and use strongly-typed configuration settings.
+- Cross-Cutting Concerns: Centralized global exception handling middleware, structured logging using Serilog (configured for console and file), and fluent validation for incoming requests.
+
+### 2. Tech Stack & Database
+- Framework: ASP.NET Core MVC (latest LTS version).
+- Database & ORM: SQL Server using Entity Framework Core (EF Core) with Code-First migrations.
+- Best Practices: Use Fluent API for entity configurations (no data annotations in domain models), implement global query filters for Soft Delete, and ensure asynchronous database operations (async/await) throughout.
+
+### 3. Business Scenario
+[INSERT YOUR BUSINESS SCENARIO HERE, e.g., "An e-commerce order management system where Admins can manage inventory and Customers can place and track orders."]
+
+### 4. What You Need to Provide
+Please generate the complete structural layout and full code implementations for the following components based on the business scenario:
+1. Domain Layer: A sample Entity (including Auditable base properties like CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, and IsDeleted).
+2. Infrastructure Layer: The ApplicationDbContext, a Fluent API configuration class for the entity, and the generic/specific Repository implementation.
+3. Application Layer: A MediatR Command or Query, its corresponding Handler, and a FluentValidation validator.
+4. Presentation (MVC) Layer: A Controller that invokes the MediatR request and returns a strongly-typed ViewModel to an optimized View.
+
+Provide clean, production-ready C# code with meaningful comments, following standard .NET C# coding conventions. Minimize placeholders.
